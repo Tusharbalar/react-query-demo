@@ -1,6 +1,14 @@
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import React, { useState } from 'react'
 import { ReactQueryDevtools } from "react-query/devtools";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import GithubDemo from "./GithubDemo";
+
 import './App.css';
 
 const queryClient = new QueryClient()
@@ -13,13 +21,36 @@ const fetcher = () => {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Example />
-    </QueryClientProvider>
+    <div>
+      <Router>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/github-demo">Github Demo</Link>
+            </li>
+          </ul>
+        </nav>
+          <QueryClientProvider client={queryClient}>
+        <Switch>
+            <Route path="/github-demo">
+              <GithubDemo />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+        </Switch>
+          </QueryClientProvider>
+      </Router>
+    </div>
   );
 }
 
-
+function Home() {
+  return <Example />
+}
 
 function Example() {
   const { isLoading, error, data, isFetching } = useQuery("repoData", () =>

@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+}
+
+.container input,
+.container label {
+  padding: 8px 10px;
+  margin: 15px;
+  width: 220px;
+}
+
+.btn {
+  height: 40px;
+  width: 150px;
+  background-color: beige;
+  border: none;
+  border-radius: 10%;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: lightblue
+}
